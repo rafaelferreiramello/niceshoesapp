@@ -1,7 +1,7 @@
-<h1>index shoes</h1>
+<h1>Nice Shoes</h1>
 
 <ul>
   <% @shoes.each do |shoe| %>
-    <li><%= link_to shoe.name, shoe_path(shoe)  %></li>
+    <li><%= link_to shoe.name, shoe_path(shoe) %></li>
   <% end %>
 </ul>

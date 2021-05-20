@@ -1,47 +1,53 @@
 class ShoesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
-    def index 
-        @shoes = Shoe.order(:created_at)
+  def index 
+    @shoes = Shoe.order(:created_at)
+  end 
+
+  def show
+    @shoes = Shoe.find(params[:id])
+  end 
+
+  def new
+    @shoe = Shoe.new
+  end
+    
+  def create
+    @shoe = Shoe.new(shoe_params)
+    @shoe.user_id = current_user.id
+    if @shoe.save
+      redirect_to @shoe
+    else 
+      flash.now[:errors] = @shoe.errors.full_messages
+      render action: "new"
     end 
+  end
 
-    def show
-        @shoes = Shoe.find(params[:id])
-    end 
+  def edit
+    @shoe = Shoe.find(params[:id])
+  end
+    
+  def update
+    @shoe = Shoe.find(params[:id])
+    if @shoe.update(shoe_params)
+      redirect_to shoe_path(@shoe)
+    else
+      flash.now[:errors] = @shoe.errors.full_messages
+      render action: "edit"
+    end
+  end
 
-    def new
-        @shoe = Shoe.new
-      end
+  def destroy
+    @shoe = Shoe.find(params[:id])
+    @shoe.destroy
+    redirect_to shoes_path
+  end
     
-      def create
-        @shoe = Shoe.new(shoe_params)
-        @shoe.user_id = current_user.id
-        @shoe.save
-        redirect_to shoes_path
-      end
-
-      def edit
-        @shoe = Shoe.find(params[:id])
-      end
+  private
     
-      def update
-        @shoe = Shoe.find(params[:id])
-        @shoe.update(shoe_params)
-    
-        redirect_to shoe_path(@shoe)
-      end
-
-      def destroy
-        @shoe = Shoe.find(params[:id])
-        @shoe.destroy
-    
-        redirect_to shoes_path
-      end
-    
-      private
-    
-      def shoe_params
-        params.require(:shoe).permit(:name, :description, :price)
-      end
+  def shoe_params
+    params.require(:shoe).permit(:name, :description, :price)
+  end
 
 end

@@ -12,20 +12,44 @@
 
   <body>
     <header>
-      <span>
-          <% if user_signed_in? %>
-            <%= current_user.email %>
-            |
-            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "Login", new_user_session_path %>
-            |
-            <%= link_to "Sign up", new_user_registration_path %>
-          <% end %>
+      <figure>
+          <img src="http://via.placeholder.com/80" alt="Nice Shoes Logo">
+          <figcaption>Nice Shoes</figcaption>
+      </figure>
+      <nav>
+        <span>
+            <% if user_signed_in? %>
+              <%= current_user.email %>
+              |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path %>
+              |
+              <%= link_to "Sign up", new_user_registration_path %>
+            <% end %>
         </span>
+      </nav>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div>
+        <span><%= link_to "Buying", root_path %></span>
+        <span><%= link_to "Selling", new_shoe_path %></span>
+    </div>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <% if flash[:errors] %>
+      <section class="errors">
+        <p class="title">The following errors occured:</p>
+        <ul>
+          <% flash[:errors].each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
     <%= yield %>
   </body>
 </html>

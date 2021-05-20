@@ -5,6 +5,8 @@ class Shoe < ApplicationRecord
   has_many :shoe_order
   has_many :orders, through: :shoe_orders
 
+  has_one_attached :photo
+
   validates :name, presence: true
   validates :price, presence: true
   validates :description, presence: true

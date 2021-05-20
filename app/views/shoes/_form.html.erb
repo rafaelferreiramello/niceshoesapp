@@ -20,6 +20,10 @@
         <%= f.collection_check_boxes :category_ids, @categories, :id, :name %>
     </p>
     <p>
+        <%= f.label :photo %>
+        <%= f.file_field :photo %>
+    </p>
+    <p>
         <%= f.submit %>
     </p>
 <% end %>

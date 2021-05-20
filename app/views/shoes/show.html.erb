@@ -1,0 +1,13 @@
+<h1>Show page</h1>
+
+<h2><%= @shoes.name %></h2>
+
+<p><%= @shoes.description %></p>
+
+<h4>AUD$ <%= @shoes.price.to_i %></h4>
+
+<p><%= link_to "Edit", edit_shoe_path(params[:id]) %></p>
+
+<p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } %>
+
+<p><%= link_to "<< Back to menu", root_path %></p>

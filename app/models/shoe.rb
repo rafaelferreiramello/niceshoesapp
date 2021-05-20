@@ -8,4 +8,8 @@ class Shoe < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :description, presence: true
+
+  def categories_to_csv
+    categories.map { |category| category.name }.join(", ")
+  end
 end

@@ -1,7 +1,3 @@
 <h3>Update a shoe</h3>
-<%= form_with model: @shoe do |form| %>
-  <%= form.text_field :name, placeholder: "name" %>
-  <%= form.text_field :description, placeholder: "description" %>
-  <%= form.number_field :price, placeholder: "price" %>
-  <%= form.submit %>
-<% end %>
+
+<%= render "form" %>

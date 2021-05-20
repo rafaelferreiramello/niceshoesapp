@@ -6,6 +6,8 @@
 
 <h4>AUD$ <%= @shoes.price.to_i %></h4>
 
+<p><%= @shoes.categories_to_csv %></p>
+
 <p><%= link_to "Edit", edit_shoe_path(params[:id]) %></p>
 
 <p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } %>

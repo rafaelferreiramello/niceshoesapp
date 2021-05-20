@@ -10,10 +10,12 @@ class ShoesController < ApplicationController
   end 
 
   def new
+    @categories = Category.order(:name)
     @shoe = Shoe.new
   end
     
   def create
+    @categories = Category.order(:name)
     @shoe = Shoe.new(shoe_params)
     @shoe.user_id = current_user.id
     if @shoe.save
@@ -25,10 +27,12 @@ class ShoesController < ApplicationController
   end
 
   def edit
+    @categories = Category.order(:name)
     @shoe = Shoe.find(params[:id])
   end
     
   def update
+    @categories = Category.order(:name)
     @shoe = Shoe.find(params[:id])
     if @shoe.update(shoe_params)
       redirect_to shoe_path(@shoe)
@@ -47,7 +51,7 @@ class ShoesController < ApplicationController
   private
     
   def shoe_params
-    params.require(:shoe).permit(:name, :description, :price)
+    params.require(:shoe).permit(:name, :description, :price, :stock, genre_ids: [])
   end
 
 end

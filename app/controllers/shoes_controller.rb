@@ -38,6 +38,10 @@ class ShoesController < ApplicationController
   end
 
   def destroy
+    @shoecategories = ShoeCategory.where(shoe_id: @shoe.id)
+    @shoecategories.each do |shoecategory|
+      shoecategory.destroy
+    end
     @shoe.destroy
     redirect_to shoes_path
   end

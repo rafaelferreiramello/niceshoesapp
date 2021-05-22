@@ -14,9 +14,10 @@
 
 <button type="button" id="checkout-button">Checkout</button>
 
-<p><%= link_to "Edit", edit_shoe_path(params[:id]) %></p>
-
-<p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } %>
+<% if @shoe.user_id == current_user.id %>
+  <p><%= link_to "Edit", edit_shoe_path(params[:id]) %></p>
+  <p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
 
 <p><%= link_to "<< Back to menu", root_path %></p>
 

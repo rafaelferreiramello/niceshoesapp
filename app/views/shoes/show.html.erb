@@ -24,7 +24,7 @@
   var stripe = Stripe("<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>");
   var checkoutButton = document.getElementById("checkout-button");
   checkoutButton.addEventListener("click", function () {
-    fetch("/transactions", {
+    fetch("/shoes/<%= @shoe.id %>/checkout", {
       method: "POST",
     })
       .then(function (response) {

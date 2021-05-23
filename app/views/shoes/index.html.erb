@@ -1,7 +1,12 @@
 <h1>Nice Shoes</h1>
 
-<ul>
-  <% @shoes.each do |shoe| %>
-    <li><%= link_to shoe.name, shoe_path(shoe) %></li>
+<% @shoes.each do |shoe| %>
+<div class="card">
+  <% if shoe.photo.attached? %>
+    <%= cl_image_tag shoe.photo.key, crop: :scale, width: 200, cloud_name: "rafaelmellocloud" %>
   <% end %>
-</ul>
+  <h1><%= link_to shoe.name, shoe_path(shoe) %></h1>
+  <p class="price"><%= "A$#{shoe.price}" %></p>
+</div>
+<% end %>
+

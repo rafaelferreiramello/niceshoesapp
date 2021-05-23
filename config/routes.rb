@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "shoes#index"
   resources :shoes
 
-  resources :blog
+  resources :blogs
 
   devise_for :users
 

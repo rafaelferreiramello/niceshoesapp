@@ -1,0 +1,21 @@
+<%= form_with model: @post, local: true do |f| %>
+    <p>
+        <%=f.label :title %>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :author %>
+        <%= f.text_field :author %>
+    </p>
+    <p>
+        <%= f.label :post %>
+        <%= f.text_field :post%>
+    </p>
+    <p>
+        <%= f.label :cover %>
+        <%= f.file_field :cover %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

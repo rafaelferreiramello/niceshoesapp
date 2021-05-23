@@ -1,2 +1,10 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<h2><%= @post.title %></h2>
+<h3><%= @post.author%></h3>
+<% if @post.cover.attached? %>
+    <p><%= cl_image_tag @post.cover.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
+<% end %>
+<p><%= @post.post %></p>
+
+<%= link_to "<< Back", :back %> 
+<%= link_to "Edit", edit_blog_path(@post) %>
+<%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" } %>

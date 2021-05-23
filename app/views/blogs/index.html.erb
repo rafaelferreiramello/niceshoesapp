@@ -1,2 +1,11 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<h1>Blog Page</h1>
+<hr>
+<% @posts.each do |post| %>
+    <h2><%= link_to post.title, blog_path(post) %></h2>
+    <h3><%= post.author %></h3>
+    <% if post.cover.attached? %>
+        <p><%= cl_image_tag post.cover.key, crop: :scale, width: 300, cloud_name: "rafaelmellocloud" %></p>
+    <% end %>
+    <p><%= post.post %></p>
+    <hr>          
+<% end %>

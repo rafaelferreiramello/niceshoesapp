@@ -1,35 +1,18 @@
 class ShoesController < ApplicationController
   before_action :authenticate_user! 
-  before_action :set_shoe, only: [:show, :edit, :update, :destroy, :buy]
+  before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit, :create, :update]
-  skip_before_action :verify_authenticity_token, only: [:buy]
-    
-  def buy
-      Stripe.api_key = ENV["STRIPE_PRIVATE_KEY"]
-      session = Stripe::Checkout::Session.create({
-          payment_method_types: ['card'],
-          line_items: [{
-          price_data: {
-              unit_amount: (@shoe.price.to_f * 100).to_i,
-              currency: 'aud',
-              product_data: {
-              name: @shoe.name,
-              },
-          },
-          quantity: 1,
-          }],
-          mode: 'payment',
-          success_url: checkout_success_url,
-          cancel_url: checkout_cancel_url,
-      })
-
-      render json: session
+  
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to shoe_path
   end
 
-  def success
-  end
-
-  def cancel
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to shoe_path
   end
 
   def index 

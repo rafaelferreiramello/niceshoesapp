@@ -14,4 +14,5 @@ class Shoe < ApplicationRecord
   def categories_to_csv
     categories.map { |category| category.name }.join(", ")
   end
+
 end

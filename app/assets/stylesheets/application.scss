@@ -14,16 +14,12 @@
  *= require_self
  */
 
- header {
+header {
     display: flex;
     align-items: center;
     background: lightseagreen;
     nav {
         display: flex;
-        flex: 2;
-        span {
-            flex: 2;
-        }
     }
     figure {
         display: flex;
@@ -35,4 +31,9 @@
 
         }
     }
+}
+
+.submenu {
+    display: flex;
+    justify-content: space-around;
 }

@@ -7,6 +7,7 @@
     <%= cl_image_tag shoe.photo.key, crop: :scale, width: 200, cloud_name: "rafaelmellocloud" %>
   <% end %>
   <h1><%= link_to shoe.name, shoe_path(shoe) %></h1>
+  <p><%= shoe.brand %></p>
   <p class="price"><%= "A$#{shoe.price}" %></p>
   <% if @cart.include?(shoe) %>
     <%= button_to "Remove from cart", remove_from_cart_path(shoe), method: :delete %>

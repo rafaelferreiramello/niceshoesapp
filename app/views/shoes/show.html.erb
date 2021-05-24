@@ -1,6 +1,7 @@
 <h1>Show page</h1>
 
 <h2><%= @shoe.name %></h2>
+<h2><%= @shoe.brand %></h2>
 
 <% if @shoe.photo.attached? %>
     <p><%= cl_image_tag @shoe.photo.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
@@ -9,6 +10,8 @@
 <p><%= @shoe.description %></p>
 
 <h4>AUD$ <%= @shoe.price.to_i %></h4>
+
+<h4>Size: AU <%= @shoe.size %></h4>
 
 <p><%= @shoe.categories_to_csv %></p>
 

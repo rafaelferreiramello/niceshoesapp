@@ -28,11 +28,14 @@ class CheckoutController < ApplicationController
     end
 
     def success
+        total_ammount = 0
         @cart.each do |item|
             item.decrement!(:stock)
+            total_ammount += item.price * 1
         end
+        Order.create(user_id: current_user.id, shoes: @cart, total_ammount: total_ammount)
         @cart = []
-        session[:cart] = [] 
+        session[:cart] = []
     end
 
     def cancel

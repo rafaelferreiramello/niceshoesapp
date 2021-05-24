@@ -10,6 +10,7 @@ class BlogsController < ApplicationController
 
   def new
     @post = Blog.new
+    # authorize @blog
   end
 
   def create

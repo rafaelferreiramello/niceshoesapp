@@ -23,7 +23,7 @@ class BlogPolicy
   end
 
   def update?
-    false
+    user.has_role? :admin
   end
 
   def edit?
@@ -31,7 +31,7 @@ class BlogPolicy
   end
 
   def destroy?
-    false
+    user.has_role? :admin
   end
 
   class Scope

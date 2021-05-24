@@ -4,7 +4,10 @@
     <p><%= cl_image_tag @blog.cover.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
 <% end %>
 <p><%= @blog.post %></p>
-
 <%= link_to "<< Back", :back %> 
-<%= link_to "Edit", edit_blog_path(@blog) %>
-<%= link_to "Delete", @blog, method: :delete, data: { confirm: "Are you sure?" } %>
+<% if policy(Blog).edit? || policy(Blog).destroy? %>
+    | 
+    <%= link_to "Edit", edit_blog_path(@blog) if policy(Blog).edit? %>
+    |
+    <%= link_to "Delete", @blog, method: :delete, data: { confirm: "Are you sure?" } if policy(Blog).destroy?%>
+<% end %>

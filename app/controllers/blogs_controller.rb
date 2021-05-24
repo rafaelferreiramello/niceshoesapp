@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :check_auth, except: [:index, :show]
   
   def index
     @blogs = Blog.order(created_at: :desc)
@@ -10,7 +11,6 @@ class BlogsController < ApplicationController
 
   def new
     @blog = Blog.new
-    authorize @blog
   end
 
   def create
@@ -50,4 +50,7 @@ class BlogsController < ApplicationController
     params.require(:blog).permit(:title, :author, :post, :cover)
   end
 
+  def check_auth
+    authorize Blog
+end
 end

@@ -3,10 +3,6 @@ class CheckoutController < ApplicationController
 
 
     def buy
-        p "-----------------------"
-        p @cart
-        p "-------------------------"
-
         @line = @cart.map do |p| 
             {price_data: {
                   unit_amount: (p.price.to_f * 100).to_i,
@@ -18,9 +14,6 @@ class CheckoutController < ApplicationController
                 quantity: 1,
             }
         end
-        p "-----------------------"
-        p @line
-        p "-------------------------"
 
         Stripe.api_key = ENV["STRIPE_PRIVATE_KEY"]
         session = Stripe::Checkout::Session.create({
@@ -35,6 +28,11 @@ class CheckoutController < ApplicationController
     end
 
     def success
+        @cart.each do |item|
+            item.decrement!(:stock)
+        end
+        @cart = []
+        session[:cart] = [] 
     end
 
     def cancel

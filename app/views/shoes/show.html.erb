@@ -14,6 +14,8 @@
 
 <% if @cart.include?(@shoe) %>
   <%= button_to "Remove from cart", remove_from_cart_path(@shoe), method: :delete %>
+<% elsif @shoe.stock == 0 %>
+  <button>Sold Out!</button>
 <% else %>
   <%= button_to "Add to cart", add_to_cart_path(@shoe) %>
 <% end %>

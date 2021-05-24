@@ -1,5 +1,6 @@
 <h1>Nice Shoes</h1>
 
+
 <% @shoes.each do |shoe| %>
 <div class="card">
   <% if shoe.photo.attached? %>
@@ -7,6 +8,13 @@
   <% end %>
   <h1><%= link_to shoe.name, shoe_path(shoe) %></h1>
   <p class="price"><%= "A$#{shoe.price}" %></p>
+  <% if @cart.include?(shoe) %>
+    <%= button_to "Remove from cart", remove_from_cart_path(shoe), method: :delete %>
+  <% elsif shoe.stock == 0 %>
+    <button>Sold Out!</button>
+  <% else %>
+    <%= button_to "Add to cart", add_to_cart_path(shoe) %>
+  <% end %>
+  <br>
 </div>
 <% end %>
-

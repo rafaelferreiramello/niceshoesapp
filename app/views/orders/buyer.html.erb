@@ -1,3 +1,12 @@
-<% @orders.each do |item| %>
-    <%= item.total_ammount %>
+<% @orders.each do |order|%>
+    <p>Ordered: <%= order.created_at %></p>
+    <p>Total: <%= "A$ #{order.total_ammount.to_i}" %></p>
+    <% products = order.shoes %>
+    <% products.each do |product| %>
+        <%= product.brand %>
+        <%= " - #{product.name}: " %>
+        <%= "A$#{product.price.to_i}" %>
+        <br>
+    <% end %>
+    <hr>
 <% end %>

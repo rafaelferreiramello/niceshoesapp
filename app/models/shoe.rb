@@ -18,4 +18,8 @@ class Shoe < ApplicationRecord
     categories.map { |category| category.name }.join(", ")
   end
 
+  def orders_to_csv
+    orders.map { |order| order.id}.join(", ")
+  end
+
 end

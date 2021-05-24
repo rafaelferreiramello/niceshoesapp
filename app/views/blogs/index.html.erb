@@ -1,6 +1,6 @@
 <h1>Blog Page</h1>
 <hr>
-<% @posts.each do |post| %>
+<% @blogs.each do |post| %>
     <h2><%= link_to post.title, blog_path(post) %></h2>
     <h3><%= post.author %></h3>
     <% if post.cover.attached? %>

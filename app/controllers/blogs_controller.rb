@@ -3,6 +3,7 @@ class BlogsController < ApplicationController
   before_action :check_auth, except: [:index, :show]
   
   def index
+    # Get all the blog posts and order in decrescent order 
     @blogs = Blog.order(created_at: :desc)
   end
 
@@ -10,10 +11,12 @@ class BlogsController < ApplicationController
   end
 
   def new
+    # Create a new blog post. Use as a model to form 
     @blog = Blog.new
   end
 
   def create
+    # Create a new blog post. If input valid, save  
     @blog = Blog.new(blog_params)
       if @blog.save
         redirect_to @blog
@@ -27,6 +30,7 @@ class BlogsController < ApplicationController
   end
 
   def update
+    # Update blog post 
     if @blog.update(blog_params)
       redirect_to @blog
     else 
@@ -36,6 +40,7 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    # Delete blog post
     @blog.destroy
       redirect_to blogs_path
   end
@@ -43,6 +48,7 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
+    # Get blog post using the blog post params
     @blog = Blog.find(params[:id])
   end
 

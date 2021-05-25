@@ -24,6 +24,5 @@
 <% end %>
 <p><%= link_to "Edit", edit_shoe_path(params[:id]) if policy(@shoe).edit? %></p>
 <p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } if policy(@shoe).edit? %>
-
 <p><%= link_to "<< Back to menu", root_path %></p>
 

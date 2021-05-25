@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def load_cart
+    # Find shoe that is added to the cart during the session and load the cart
     @cart = Shoe.find(session[:cart])
   end
   

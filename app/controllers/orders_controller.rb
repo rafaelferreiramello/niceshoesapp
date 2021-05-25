@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+    
     def index
     end
 
@@ -8,13 +9,7 @@ class OrdersController < ApplicationController
     end
 
     def seller
-        @shoes_user = Shoe.where(user_id: current_user.id)
-        @shoes = @shoes_user.order(created_at: :desc)
-        @shoes.each do |shoe|
-            @orders = Order.where(user_id: shoe.user_id)
-        end 
-        p "--------------------------"
-        p @orders
-        p "--------------------------"
+        @shoes = Shoe.where(user_id: current_user.id)
     end
+
 end

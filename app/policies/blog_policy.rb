@@ -23,7 +23,7 @@ class BlogPolicy
   end
 
   def update?
-    user.has_role? :admin
+    user.has_role? :admin #or if the current_user is the shoe owner
   end
 
   def edit?

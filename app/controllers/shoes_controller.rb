@@ -1,5 +1,6 @@
 class ShoesController < ApplicationController
   before_action :authenticate_user! 
+  before_action :check_auth, except: [:index, :show, :new]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit, :create, :update]
   
@@ -70,6 +71,10 @@ class ShoesController < ApplicationController
     
   def shoe_params
     params.require(:shoe).permit(:name, :description, :price, :brand, :size, :stock, :photo, category_ids: [])
+  end
+
+  def check_auth
+    authorize Shoe
   end
 
 end

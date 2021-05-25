@@ -1,12 +1,10 @@
 <% @orders.each do |order|%>
-    <p>Ordered: <%= order.created_at %></p>
-    <p>Total: <%= "A$ #{order.total_ammount.to_i}" %></p>
-    <% products = order.shoes %>
-    <% products.each do |product| %>
-        <%= product.brand %>
-        <%= " - #{product.name}: " %>
-        <%= "A$#{product.price.to_i}" %>
-        <br>
-    <% end %>
+    <% order.shoe_orders.each do |shoe_order| %>
+        <p>Order number: <%= shoe_order.order.id %></p>
+        <p>Date: <%= shoe_order.order.created_at %></p>
+        <p>Item name: <%= shoe_order.shoe.name %></p>
+        <p>Item brand name: <%= shoe_order.shoe.brand %></p>
+        <p>Please contact seller to organize delivery: <%= shoe_order.shoe.user.email %></p>
     <hr>
+    <% end %>
 <% end %>

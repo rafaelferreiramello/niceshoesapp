@@ -52,5 +52,5 @@ class BlogsController < ApplicationController
 
   def check_auth
     authorize Blog
-end
+  end
 end

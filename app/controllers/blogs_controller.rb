@@ -15,12 +15,12 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
-        if @blog.save
-            redirect_to @blog
-        else 
-            flash.now[:errors] = @blog.errors.full_messages
-            render action: "new"
-        end 
+      if @blog.save
+        redirect_to @blog
+      else 
+        flash.now[:errors] = @blog.errors.full_messages
+        render action: "new"
+      end 
   end
 
   def edit
@@ -43,7 +43,7 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-      @blog = Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def blog_params 
@@ -53,4 +53,5 @@ class BlogsController < ApplicationController
   def check_auth
     authorize Blog
   end
+  
 end

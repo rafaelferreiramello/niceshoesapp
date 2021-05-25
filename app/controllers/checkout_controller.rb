@@ -1,13 +1,12 @@
 class CheckoutController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:buy]
 
-
     def buy
         @line = @cart.map do |p| 
             {price_data: {
-                  unit_amount: (p.price.to_f * 100).to_i,
-                  currency: 'aud',
-                  product_data: {
+                unit_amount: (p.price.to_f * 100).to_i,
+                currency: 'aud',
+                product_data: {
                     name: p.name,
                   },
                 },

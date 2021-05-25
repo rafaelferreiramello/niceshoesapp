@@ -15,7 +15,7 @@ class BlogPolicy
   end
 
   def create?
-    user.has_role? :admin
+    [:admin, :editor].any? { |role| user.has_role? role }
   end
 
   def new?
@@ -23,7 +23,7 @@ class BlogPolicy
   end
 
   def update?
-    user.has_role? :admin #or if the current_user is the shoe owner
+    [:admin, :editor].any? { |role| user.has_role? role }
   end
 
   def edit?
@@ -31,7 +31,7 @@ class BlogPolicy
   end
 
   def destroy?
-    user.has_role? :admin
+    [:admin, :editor].any? { |role| user.has_role? role }
   end
 
   class Scope

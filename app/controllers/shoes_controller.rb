@@ -1,7 +1,7 @@
 class ShoesController < ApplicationController
   before_action :authenticate_user! 
-  before_action :check_auth, except: [:index, :show, :new]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
+  before_action :check_auth, only: [:edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit, :create, :update]
   
   def add_to_cart
@@ -74,7 +74,7 @@ class ShoesController < ApplicationController
   end
 
   def check_auth
-    authorize Shoe
+    authorize @shoe
   end
 
 end

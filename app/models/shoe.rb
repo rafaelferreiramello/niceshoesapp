@@ -7,12 +7,7 @@ class Shoe < ApplicationRecord
 
   has_one_attached :photo
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :description, presence: true
-  validates :stock, presence: true
-  validates :brand, presence:true
-  validates :size, presence:true
+  validates :name, :price, :description, :stock, :brand, :size, presence: true
 
   def categories_to_csv
     categories.map { |category| category.name }.join(", ")

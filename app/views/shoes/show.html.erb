@@ -22,11 +22,8 @@
 <% else %>
   <%= button_to "Add to cart", add_to_cart_path(@shoe) %>
 <% end %>
-
-<% if policy(Shoe).edit? || policy(Shoe).destroy? %>
-  <p><%= link_to "Edit", edit_shoe_path(params[:id]) if policy(Shoe).edit? %></p>
-  <p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } if policy(Shoe).edit? %>
-<% end %>
+<p><%= link_to "Edit", edit_shoe_path(params[:id]) if policy(@shoe).edit? %></p>
+<p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } if policy(@shoe).edit? %>
 
 <p><%= link_to "<< Back to menu", root_path %></p>
 

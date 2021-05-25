@@ -23,15 +23,15 @@ class ShoePolicy
     end
   
     def update?
-      is_owner?
+      return true if user.has_role? :admin || Shoe.where(user_id: current_user.id) 
     end
   
     def edit?
-      is_owner?
+      return true if user.has_role? :admin || Shoe.where(user_id: current_user.id) 
     end
   
     def destroy?
-      is_owner?
+      return true if user.has_role? :admin || Shoe.where(user_id: current_user.id) 
     end
   
     class Scope

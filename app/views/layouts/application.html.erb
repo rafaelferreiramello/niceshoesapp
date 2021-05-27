@@ -14,12 +14,10 @@
 
   <body>
     <header>
-      <figure>
-          <img src="http://via.placeholder.com/80" alt="Nice Shoes Logo">
-          <figcaption>Nice Shoes</figcaption>
-      </figure>
-      <nav>
-        <span>
+      <nav class="navbar navbar-light text-white bg-secondary">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-2 text-white">Nice Shoes</a>
+          <span class="d-flex">
             <% if user_signed_in? %>
               <%= current_user.email %>
               |
@@ -29,15 +27,24 @@
               |
               <%= link_to "Sign up", new_user_registration_path %>
             <% end %>
-        </span>
+          </span>
+        </div>
       </nav>
     </header>
-    <div class="submenu">
-        <span><h2><%= link_to "Buying", root_path %></h2></span>
-        <span><h2><%= link_to "Selling", new_shoe_path %></h2></span>
-        <span><h2><%= link_to "Orders", orders_path %></h2></span>
-        <span><h2><%= link_to "Blog", blogs_path %></h2></span>
-    </div>
+    <ul class="nav nav-pills nav-justified">
+      <li class="nav-item">
+        <%= link_to "Buying", root_path, class:"nav-link fs-3" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Selling", new_shoe_path, class:"nav-link fs-3"  %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Orders", orders_path, class:"nav-link fs-3"  %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Blog", blogs_path, class:"nav-link fs-3"  %>
+      </li>
+    </ul>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
@@ -54,20 +61,22 @@
         </ul>
       </section>
     <% end %>
-    <hr>
-    <h1>Shopping cart</h1>
-    Items:
-    <%= @cart.size %>
-    <br>
-    <% @cart.each do |cart_item| %>
-      <br>
-      <%= cart_item.name %>
-      <%= "- A$#{cart_item.price}" %>
-      <%= link_to "Remove from cart", remove_from_cart_path(cart_item), method: :delete %>
-    <% end %>
-    <br><br>
     <% if @cart.present? %>
-      <button id="checkout-button">Buy now!</button>
+      <hr>
+      <h3>Shopping cart</h3>
+      Items:
+      <%= @cart.size %>
+      <br>
+      <% @cart.each do |cart_item| %>
+        <br>
+        <%= cart_item.name %>
+        <%= "- A$#{cart_item.price}" %>
+        <%= link_to "Remove from cart", remove_from_cart_path(cart_item), method: :delete %>
+      <% end %>
+      <br><br>
+      <% if @cart.present? %>
+        <button id="checkout-button">Buy now!</button>
+      <% end %>
     <% end %>
     <hr>
     <%= yield %>

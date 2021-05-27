@@ -1,28 +1,31 @@
-<h1>Show page</h1>
+<div class="d-flex flex-wrap">
+<div class="d-flex align-items-center">
+  <% if @shoe.photo.attached? %>
+      <p><%= cl_image_tag @shoe.photo.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
+  <% end %>
+</div>
+<div class="d-flex flex-column align-items-center justify-content-center mx-5">
+  <h2><%= @shoe.name %></h2>
+  <h2><%= @shoe.brand %></h2>
 
-<h2><%= @shoe.name %></h2>
-<h2><%= @shoe.brand %></h2>
+  <p><%= @shoe.description %></p>
 
-<% if @shoe.photo.attached? %>
-    <p><%= cl_image_tag @shoe.photo.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
-<% end %>
+  <h4>AUD$ <%= @shoe.price.to_i %></h4>
 
-<p><%= @shoe.description %></p>
+  <h4>Size: AU <%= @shoe.size %></h4>
 
-<h4>AUD$ <%= @shoe.price.to_i %></h4>
+  <p><%= @shoe.categories_to_csv %></p>
 
-<h4>Size: AU <%= @shoe.size %></h4>
-
-<p><%= @shoe.categories_to_csv %></p>
-
-<% if @cart.include?(@shoe) %>
-  <%= button_to "Remove from cart", remove_from_cart_path(@shoe), method: :delete %>
-<% elsif @shoe.stock == 0 %>
-  <button>Sold Out!</button>
-<% else %>
-  <%= button_to "Add to cart", add_to_cart_path(@shoe) %>
-<% end %>
-<p><%= link_to "Edit", edit_shoe_path(params[:id]) if policy(@shoe).edit? %></p>
-<p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } if policy(@shoe).edit? %>
-<p><%= link_to "<< Back to menu", root_path %></p>
-
+  <% if @cart.include?(@shoe) %>
+    <%= button_to "Remove from cart", remove_from_cart_path(@shoe), method: :delete %>
+  <% elsif @shoe.stock == 0 %>
+    <button>Sold Out!</button>
+  <% else %>
+    <%= button_to "Add to cart", add_to_cart_path(@shoe) %>
+  <% end %>
+  <br>
+  <p><%= link_to "Edit", edit_shoe_path(params[:id]) if policy(@shoe).edit? %></p>
+  <p><%= link_to "Delete", @shoe, method: :delete, data: { confirm: "Are you sure?" } if policy(@shoe).edit? %>
+  <p><%= link_to "<< Back to menu", root_path %></p>
+</div>
+</div>

@@ -15,26 +15,3 @@
 
 @import "bootstrap";
 
-header {
-    display: flex;
-    align-items: center;
-    background: lightseagreen;
-    nav {
-        display: flex;
-    }
-    figure {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        margin: 0;
-        img {
-            margin-right: 1rem;
-
-        }
-    }
-}
-
-.submenu {
-    display: flex;
-    justify-content: space-around;
-}

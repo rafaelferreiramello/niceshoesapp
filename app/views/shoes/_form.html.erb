@@ -1,37 +1,39 @@
-<%= form_with model: @shoe, local: true do |f| %>
-    <p>
-        <%=f.label :name %>
-        <%= f.text_field :name %>
-    </p>
-    <p>
-        <%=f.label :brand %>
-        <%= f.text_field :brand %>
-    </p>
-    <p>
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-    </p>
-    <p>
-        <%= f.label :price %>
-        <%= f.number_field :price %>
-    </p>
-    <p>
-        <%= f.label :size %>
-        <%= f.number_field :size %>
-    </p>
-    <p>
-        <%= f.label :stock %>
-        <%= f.number_field :stock %>
-    </p>
-    <p>
-        <%= f.label :categories %>
-        <%= f.collection_check_boxes :category_ids, @categories, :id, :name %>
-    </p>
-    <p>
-        <%= f.label :photo %>
-        <%= f.file_field :photo %>
-    </p>
-    <p>
-        <%= f.submit %>
-    </p>
-<% end %>
+<div class="mx-3">  
+    <%= form_with model: @shoe, local: true do |f| %>
+        <p class="form-control">
+            <%=f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+        </p>
+        <p class="form-control">
+            <%=f.label :brand %>
+            <%= f.text_field :brand, class: "form-control" %>
+        </p>
+        <p class="form-control">
+            <%= f.label :description, for: "exampleFormControlTextarea1" %>
+            <%= f.text_area :description, class: "form-control", id:"exampleFormControlTextarea1", rows:"3" %>
+        </p>
+        <p class="form-control">
+            <%= f.label :price %>
+            <%= f.number_field :price, class: "form-control" %>
+        </p>
+        <p class="form-control"> 
+            <%= f.label :size %>
+            <%= f.number_field :size, class: "form-control" %>
+        </p>
+        <p class="form-control">
+            <%= f.label :stock %>
+            <%= f.number_field :stock, class: "form-control" %>
+        </p>
+        <p class="form-control">
+            <%= f.label :categories %>
+            <%= f.collection_check_boxes :category_ids, @categories, :id, :name, class: "form-control" %>
+        </p>
+        <p class="form-control">
+            <%= f.label :photo %>
+            <%= f.file_field :photo, class: "form-control" %>
+        </p>
+        <p class="btn btn-primary">
+            <%= f.submit %>
+        </p>
+    <% end %>
+</div> 

@@ -16,8 +16,9 @@ class BlogsController < ApplicationController
   end
 
   def create
-    # Create a new blog post. If input valid, save  
+    # Create a new blog post. If input valid, save
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id if current_user
       if @blog.save
         redirect_to @blog
       else 
@@ -53,7 +54,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params 
-    params.require(:blog).permit(:title, :author, :post, :cover)
+    params.require(:blog).permit(:title, :author, :post, :cover, :user)
   end
 
   def check_auth

@@ -1,11 +1,12 @@
-<h2><%= @blog.title %></h2>
-<h3><%= @blog.author%></h3>
-<% if @blog.cover.attached? %>
-    <p><%= cl_image_tag @blog.cover.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %></p>
-<% end %>
-<p><%= @blog.post %></p>
-<%= link_to "<< Back", :back %> 
-<%= link_to "Edit", edit_blog_path(@blog) if policy(Blog).edit? %>
-<%= link_to "Delete", @blog, method: :delete, data: { confirm: "Are you sure?" } if policy(Blog).destroy?%>
-
+<div class="mx-3">   
+    <h2><%= @blog.title %></h2>
+    <h3>By <%= @blog.author%></h3>
+    <% if @blog.cover.attached? %>
+        <%= cl_image_tag @blog.cover.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud", class:"d-flex" %>
+    <% end %>
+    <p><%= @blog.post %></p>
+    <%= link_to "<< Back", :back %> 
+    <%= link_to "Edit", edit_blog_path(@blog) if policy(Blog).edit? %>
+    <%= link_to "Delete", @blog, method: :delete, data: { confirm: "Are you sure?" } if policy(Blog).destroy?%>
+</div>
 

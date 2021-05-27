@@ -1,24 +1,23 @@
 
-
 <div class="d-flex align-content-stretch flex-wrap justify-content-around">
-<% @shoes.each do |shoe| %>
-<div class="card" style="width: 23rem;">
-  <% if shoe.photo.attached? %>
-    <img class="card-img-top" alt="Shoes"<%= cl_image_tag shoe.photo.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %> 
-  <% end %>
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to shoe.name, shoe_path(shoe) %></h1></h5>
-    <p class="card-text"><%= shoe.brand %></p>
-    <p class="price"><%= "A$#{shoe.price}" %></p>
-    <% if @cart.include?(shoe) %>
-      <a href="#" class="btn btn-primary"><%= button_to "Remove from cart", remove_from_cart_path(shoe), method: :delete %></a>
-    <% elsif shoe.stock == 0 %>
-      <button class="btn btn-primary">Sold Out!</button>
-    <% else %>
-      <%= button_to "Add to cart", add_to_cart_path(shoe) %>
+  <% @shoes.each do |shoe| %>
+  <div class="card" style="width: 23rem;">
+    <% if shoe.photo.attached? %>
+      <img class="card-img-top" alt="Shoes"<%= cl_image_tag shoe.photo.key, crop: :scale, width: 500, cloud_name: "rafaelmellocloud" %> 
     <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to shoe.name, shoe_path(shoe) %></h1></h5>
+      <p class="card-text"><%= shoe.brand %></p>
+      <p class="price"><%= "A$#{shoe.price}" %></p>
+      <% if @cart.include?(shoe) %>
+        <a href="#" class="btn btn-primary"><%= button_to "Remove from cart", remove_from_cart_path(shoe), method: :delete %></a>
+      <% elsif shoe.stock == 0 %>
+        <button class="btn btn-primary">Sold Out!</button>
+      <% else %>
+        <%= button_to "Add to cart", add_to_cart_path(shoe) %>
+      <% end %>
+    </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 </div>
 
